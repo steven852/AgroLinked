@@ -1,0 +1,12 @@
+.main {
+  padding: 16px;
+  margin-top: 50px;
+}
+
+
+.flex-container {
+
+  position: : fixed;
+  display: flex;
+  float: right;
+}
