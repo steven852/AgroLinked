@@ -2,6 +2,6 @@
 
 @section('content')
 
-<a href="/schedules"> Clik MEh</a>
+<a href="/schedules">View Calendar</a>
 
 @endsection
