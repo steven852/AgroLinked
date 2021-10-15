@@ -6,9 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Schedule;
 
 class NotifyEventUserMail extends Mailable
 {
+    private $data;
+
     use Queueable, SerializesModels;
 
     /**
@@ -16,9 +19,9 @@ class NotifyEventUserMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Schedule $data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +31,7 @@ class NotifyEventUserMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.notify_event');
+        return $this->markdown('emails.notify_event')
+          ->with('data', $this->data);;
     }
 }

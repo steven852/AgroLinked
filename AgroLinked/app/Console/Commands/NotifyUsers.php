@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Schedule;
 use App\Models\User;
 use App\Mail\NotifyEventUserMail;
@@ -42,17 +43,12 @@ class NotifyUsers extends Command
     public function handle()
     {
 
-      $scheduledDate = Schedule::whereDate('date', '=', date("Y/m/d"))->get('user_id');
-      $userEmail = User::whereIn('id', $scheduledDate)->get();
+      $scheduledUsersData = Schedule::whereDate('date', '=', date("Y/m/d"))->get(['user_id', 'date', 'title', 'place', 'details']);
+      $userEmail = User::whereIn('id', $scheduledUsersData->pluck('user_id'))->get('email');
 
-    //   echo($scheduledDate);
-      // echo("\r\n \r\n");
-      // echo($userEmail);
-      // echo("\r\n \r\n");
-      foreach ($userEmail as $email) {
-        echo($email);
-        echo("\r\n");
-        // Mail::to($email, new NotifyEventUserMail());
+      for ($i = 0; $i < $userEmail->count(); $i++){
+        //Mail::to($userEmail[$i], new NotifyEventUserMail($scheduledUsersData[$i]));
+        Mail::to($userEmail[$i])->send(new NotifyEventUserMail($scheduledUsersData[$i]));
       }
     }
 }

@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/email', function () {
     //Mail::to('steven.tononidis@gmail.com')->send(new WelcomeNewUserMail());
-    return new NotifyEventUserMail(); // Users
+    //return new NotifyEventUserMail(); // Users
 });
 
 

@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
       // })->everyMinute();
 
       $schedule->command('send:notification')
-         ->everyMinute()
+         ->everyDay()
          ->sendOutputTo('TestQuery.log');
     }
 
