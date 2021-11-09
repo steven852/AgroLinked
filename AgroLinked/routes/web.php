@@ -44,6 +44,10 @@ Route::get('/contact', function () {
 });
 
 
+Route::get('/reactHome', function () {
+    return view('reactViews.welcome');
+});
+
 
 
 Auth::routes();

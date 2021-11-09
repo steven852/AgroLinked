@@ -12,6 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue()
-    .sass('resources/sass/app.scss', 'public/css')
-    .copy('node_modules/@fortawesome/fontawesome-free/webfonts', 'public/webfonts');
+    .react()
+    .extract(["react"])
+    .sass('resources/sass/app.scss', 'public/css');
