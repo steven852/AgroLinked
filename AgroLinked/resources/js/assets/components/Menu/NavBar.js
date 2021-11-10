@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
 
@@ -14,7 +14,7 @@ class Navbar extends React.Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-custom sticky-top">
         <div className="container-fluid">
 
-          <a className="navbar-brand text-dark fw-bold fs-3 ms-3" href ="/">AgroLinked</a>
+          <Link className="navbar-brand text-dark fw-bold fs-3 ms-3" to ="/reactHome">AgroLinked</Link>
 
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span className="navbar-toggler-icon"></span>
@@ -23,22 +23,22 @@ class Navbar extends React.Component {
           <div className="collapse navbar-collapse navbar-left fs-4" id="navbarMenu">
             <ul className="nav navbar-nav me-auto ms-4">
               <li className="nav-item">
-                <a className="nav-link" href="/about">About</a>
+                <Link className="nav-link" to="/about">About</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href ="/product">Product</a>
+                <Link className="nav-link" to ="/product">Product</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contact">Contact Us</a>
+                <Link className="nav-link" to="/contact">Contact Us</Link>
               </li>
             </ul>
 
             <ul className="nav navbar-nav">
               <li className="btn-nav">
-                <a className="btn btn-primary btn-small navbar-btn me-2" href="/login">Log In</a>
+                <Link className="btn btn-primary btn-small navbar-btn me-2" to="/login">Log In</Link>
               </li>
               <li className="btn-nav">
-                <a className="btn btn-primary btn-small navbar-btn me-4" href="/register">Register</a>
+                <Link className="btn btn-primary btn-small navbar-btn me-4" to="/register">Register</Link>
               </li>
             </ul>
           </div>

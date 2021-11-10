@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class Footer extends React.Component {
 
@@ -12,8 +11,8 @@ class Footer extends React.Component {
   render(){
     return (
       <footer className="text-center text-lg-start text-dark">
-        <section className="d-flex justify-content-between p-4 text-white bg-success">
-          <div className="d-none d-lg-block">
+        <section className="d-flex bg-success p-2 justify-content-between">
+          <div className="text-white">
             <b>Find us on our social networks:</b>
           </div>
           <div>
@@ -37,8 +36,7 @@ class Footer extends React.Component {
             </a>
           </div>
         </section>
-
-        <section className="bg-secondary">
+        <section className="bg-footer">
           <div className="container text-center text-md-start">
 
             <div className="row">
@@ -101,8 +99,8 @@ class Footer extends React.Component {
           </div>
         </section>
 
-        <section className="p-1 text-white text-center bg-dark">
-          <p>© 2021 Copyright: <a href="#">AgroLinked</a></p>
+        <section className="text-white text-center bg-dark footer-copyright">
+          <p>© {new Date().getFullYear()} Copyright: <a className="footer-copyright-link" href="#">AgroLinked</a></p>
         </section>
       </footer>
 

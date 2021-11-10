@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
 
@@ -35,7 +35,7 @@ class Home extends React.Component {
           Just look it up in your account!</p>
           <br/>
           <br/>
-          <h3>Learn more <a href="/about">here</a></h3>
+          <h3>Learn more <Link to="/about">here</Link></h3>
         </div>
 
       </main>

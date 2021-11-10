@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/Navbar/NavBar.js';
-import Footer from './components/Footer/Footer.js';
-import Home from './components/Home/Home.js';
-import About from './components/About/About.js';
-import { BrowserRouter } from "react-router-dom";
+import Navbar from './components/Menu/NavBar.js';
+import Footer from './components/Menu/Footer.js';
+import Home from './components/Menu/Home.js';
+import About from './components/Menu/About.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -18,12 +18,14 @@ class App extends React.Component {
 
   render(){
     return (
-        <div>
+        <Router>
           <Navbar />
-          <About />
+          <Routes>
+            <Route exact path="/reactHome" element={<Home/>} />
+            <Route exact path="/about" element={<About/>} />
+          </Routes>
           <Footer />
-        </div>
-
+        </Router>
     );
   }
 

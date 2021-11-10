@@ -16,7 +16,7 @@
 .bg-home-second{
   background-color: white;
   background-repeat: no-repeat;
-  height: 100vh;
+  padding-bottom: 10vh;
 }
 
 .home-position-first{
@@ -27,4 +27,19 @@
 .home-position-second{
   padding-top: 10vh;
   padding-left: 15vh;
+}
+
+.bg-footer{
+  background-color: #d1e7ed;
+  padding-top: 5vh;
+}
+
+.footer-copyright{
+  padding-top: 0.5vh;
+  min-height: 5vh;
+}
+
+.footer-copyright-link{
+  color: #0d6efd;
+  text-decoration: none;
 }
