@@ -14,7 +14,7 @@ class Navbar extends React.Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-custom sticky-top">
         <div className="container-fluid">
 
-          <Link className="navbar-brand text-dark fw-bold fs-3 ms-3" to ="/reactHome">AgroLinked</Link>
+          <Link className="navbar-brand text-dark fw-bold fs-3 ms-3" to ="/">AgroLinked</Link>
 
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
             <span className="navbar-toggler-icon"></span>
@@ -35,10 +35,10 @@ class Navbar extends React.Component {
 
             <ul className="nav navbar-nav">
               <li className="btn-nav">
-                <Link className="btn btn-primary btn-small navbar-btn me-2" to="/login">Log In</Link>
+                <a className="btn btn-primary btn-small navbar-btn me-2" href="/login">Log In</a>
               </li>
               <li className="btn-nav">
-                <Link className="btn btn-primary btn-small navbar-btn me-4" to="/register">Register</Link>
+                <a className="btn btn-primary btn-small navbar-btn me-4" href="/register">Register</a>
               </li>
             </ul>
           </div>

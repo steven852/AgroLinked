@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     if (Auth::guest()) {
-        return view('welcome'); // Guests
+        return view('reactViews.welcome'); // Guests
     } else {
         return view('account.home'); // Users
     }
@@ -32,7 +32,7 @@ Route::get('/email', function () {
 
 
 Route::get('/about', function () {
-    return view('menu.about');
+    return view('reactViews.welcome');
 });
 
 Route::get('/product', function () {
@@ -41,11 +41,6 @@ Route::get('/product', function () {
 
 Route::get('/contact', function () {
     return view('menu.contact');
-});
-
-
-Route::get('/reactHome', function () {
-    return view('reactViews.welcome');
 });
 
 
