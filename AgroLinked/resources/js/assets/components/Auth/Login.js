@@ -12,6 +12,13 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useFormControl } from '@mui/material/FormControl';
 
 function Copyright(props) {
   return (
@@ -28,118 +35,231 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+class Login extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      values: {
+        email: "",
+        password: "",
       },
-      method: "POST",
-      url: "/login",
-      dataType: "JSON",
-      data: {
-        email: data.get('email'),
-        password: data.get('password'),
+      error: {
+        email: false,
+        password: false,
+        unValidated: true,
       },
-      success: function(){
-        window.location.replace("/");
+      errorMessage: {
+        email: "Invalid email format",
+        password: "Password is too short",
       },
+      showPassword: false,
+    };
 
-      error: function(){
-        console.log('makis');
-        // TODO: Pop message saying incorect mail or pass and clear the inputs
-      }
-    });
-
+    this.handleClickShowPassword = () => {
+      this.setState(prevState => ({
+        showPassword: !prevState.showPassword,
+      }));
   };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(/storage/images/home_image2.jpg)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          <Box
+    this.handleBlurEmail = () => {
+      var re = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+      if(!re.test(this.state.values.email)){
+        this.setState(prevState => ({
+          error: {
+            ...prevState.error,
+            email: true,
+          },
+        }));
+      }
+    }
+
+    this.handleBlurPassword = () => {
+      if(this.state.values.password.length < 9){
+        this.setState(prevState => ({
+          error: {
+            ...prevState.error,
+            password: true,
+          },
+        }));
+      }
+    }
+
+    this.handleFocusEmail = () => {
+      if(this.state.error.email === true){
+        this.setState(prevState => ({
+          error: {
+            ...prevState.error,
+            email: false,
+          },
+        }));
+      }
+    }
+
+    this.handleFocusPassword = () => {
+      if(this.state.error.password === true){
+        this.setState(prevState => ({
+          error: {
+            ...prevState.error,
+            password: false,
+          },
+        }));
+      }
+    }
+
+    this.handleChange = (e) => {
+      const {name, value} = e.target;
+      this.setState(prevState => ({
+        values: {
+          ...prevState.values, // keep all other key-value pairs
+          [name]: value,
+          }
+      }));
+    }
+
+    this.handleSubmit = (event) => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        method: "POST",
+        url: "/login",
+        dataType: "JSON",
+        data: {
+          email: data.get('email'),
+          password: data.get('password'),
+        },
+        success: function(){
+          window.location.replace("/");
+        },
+
+        error: (data) => {
+          //console.log(data)
+          if(data.status === 422){
+            this.setState(prevState => ({
+              error: {
+                ...prevState.error,
+                unValidated: false,
+              },
+            }));
+          }
+        }
+      });
+
+    };
+  }
+
+  render(){
+    return (
+      <ThemeProvider theme={theme}>
+        <Grid container component="main" sx={{ height: '100vh' }}>
+          <CssBaseline />
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
             sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              backgroundImage: 'url(/storage/images/home_image2.jpg)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: (t) =>
+                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
+          />
+          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+            <Box
+              sx={{
+                my: 4,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+              </Typography>
+              <Box component="form" noValidate onSubmit={this.handleSubmit} sx={{ mt: 1 }}>
+                <Box  >
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  error={this.state.error.email}
+                  helperText={this.state.error.email === true ? this.state.errorMessage.email : " "}
+                  onBlur={this.handleBlurEmail}
+                  value={this.state.values.email}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocusEmail}
+                />
+
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  error={this.state.error.password}
+                  helperText={this.state.error.password === true ? this.state.errorMessage.password : " "}
+                  onBlur={this.handleBlurPassword}
+                  value={this.state.values.password}
+                  onChange={this.handleChange}
+                  onFocus={this.handleFocusPassword}
+                />
+                </Box>
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+
+                {this.state.error.unValidated === true ? " " :
+                  <p className="text-danger">
+                  Sorry, your email or password was incorrect. Please double-check email or password.
+                  </p>
+                }
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign In
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link href="/register" variant="body2">
+                      {"Don't have an account? Sign Up"}
+                    </Link>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+                <Copyright sx={{ mt: 5 }} />
+              </Box>
             </Box>
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </ThemeProvider>
-  );
+      </ThemeProvider>
+    );
+  }
 }
+export default Login;
