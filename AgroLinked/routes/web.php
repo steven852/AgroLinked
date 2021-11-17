@@ -49,5 +49,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index');
+Route::post('/userName', 'Auth\RegisterController@isUserNameTaken');
+Route::post('/email', 'Auth\RegisterController@isEmailTaken');
 
 Route::resource('schedules', 'ScheduleController');

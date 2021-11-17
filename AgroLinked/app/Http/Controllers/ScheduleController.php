@@ -21,7 +21,6 @@ class ScheduleController extends Controller
     {
 
     $data = Schedule::where("user_id", auth()->id())->get();
-
       return response()->json($data);
      }
 
@@ -37,17 +36,14 @@ class ScheduleController extends Controller
   public function store(Request $request)
   {
     $data = request()->validate([
-
       'date' => ['required', 'date'],
       'title' => ['required', 'string'],
       'place' => '',
       'details' => '',
-
     ]);
 
     auth()->user()->schedules()->create($data);
     return view('account.schedules');
-
   }
 
   public function show(Schedule $schedule)

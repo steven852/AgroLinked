@@ -59,10 +59,10 @@ class Login extends React.Component{
       this.setState(prevState => ({
         showPassword: !prevState.showPassword,
       }));
-  };
+    };
 
     this.handleBlurEmail = () => {
-      var re = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if(!re.test(this.state.values.email)){
         this.setState(prevState => ({
           error: {
@@ -71,7 +71,7 @@ class Login extends React.Component{
           },
         }));
       }
-    }
+    };
 
     this.handleBlurPassword = () => {
       if(this.state.values.password.length < 9){
@@ -82,29 +82,19 @@ class Login extends React.Component{
           },
         }));
       }
-    }
+    };
 
-    this.handleFocusEmail = () => {
-      if(this.state.error.email === true){
+    this.handleFocus = (e) => {
+      const {name} = e.target;
+      if(this.state.error[name] === true){
         this.setState(prevState => ({
           error: {
             ...prevState.error,
-            email: false,
+            [name]: false,
           },
         }));
       }
-    }
-
-    this.handleFocusPassword = () => {
-      if(this.state.error.password === true){
-        this.setState(prevState => ({
-          error: {
-            ...prevState.error,
-            password: false,
-          },
-        }));
-      }
-    }
+    };
 
     this.handleChange = (e) => {
       const {name, value} = e.target;
@@ -114,7 +104,7 @@ class Login extends React.Component{
           [name]: value,
           }
       }));
-    }
+    };
 
     this.handleSubmit = (event) => {
       event.preventDefault();
@@ -136,7 +126,6 @@ class Login extends React.Component{
         },
 
         error: (data) => {
-          //console.log(data)
           if(data.status === 422){
             this.setState(prevState => ({
               error: {
@@ -149,7 +138,7 @@ class Login extends React.Component{
       });
 
     };
-  }
+  };
 
   render(){
     return (
@@ -202,7 +191,7 @@ class Login extends React.Component{
                   onBlur={this.handleBlurEmail}
                   value={this.state.values.email}
                   onChange={this.handleChange}
-                  onFocus={this.handleFocusEmail}
+                  onFocus={this.handleFocus}
                 />
 
                 <TextField
@@ -219,7 +208,7 @@ class Login extends React.Component{
                   onBlur={this.handleBlurPassword}
                   value={this.state.values.password}
                   onChange={this.handleChange}
-                  onFocus={this.handleFocusPassword}
+                  onFocus={this.handleFocus}
                 />
                 </Box>
                 <FormControlLabel

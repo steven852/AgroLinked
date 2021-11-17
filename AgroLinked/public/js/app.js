@@ -27782,7 +27782,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
     };
 
     _this.handleBlurEmail = function () {
-      var re = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (!re.test(_this.state.values.email)) {
         _this.setState(function (prevState) {
@@ -27807,25 +27807,13 @@ var Login = /*#__PURE__*/function (_React$Component) {
       }
     };
 
-    _this.handleFocusEmail = function () {
-      if (_this.state.error.email === true) {
-        _this.setState(function (prevState) {
-          return {
-            error: _objectSpread(_objectSpread({}, prevState.error), {}, {
-              email: false
-            })
-          };
-        });
-      }
-    };
+    _this.handleFocus = function (e) {
+      var name = e.target.name;
 
-    _this.handleFocusPassword = function () {
-      if (_this.state.error.password === true) {
+      if (_this.state.error[name] === true) {
         _this.setState(function (prevState) {
           return {
-            error: _objectSpread(_objectSpread({}, prevState.error), {}, {
-              password: false
-            })
+            error: _objectSpread(_objectSpread({}, prevState.error), {}, _defineProperty({}, name, false))
           };
         });
       }
@@ -27861,7 +27849,6 @@ var Login = /*#__PURE__*/function (_React$Component) {
           window.location.replace("/");
         },
         error: function error(data) {
-          //console.log(data)
           if (data.status === 422) {
             _this.setState(function (prevState) {
               return {
@@ -27951,7 +27938,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
                     onBlur: this.handleBlurEmail,
                     value: this.state.values.email,
                     onChange: this.handleChange,
-                    onFocus: this.handleFocusEmail
+                    onFocus: this.handleFocus
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
                     margin: "normal",
                     required: true,
@@ -27966,7 +27953,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
                     onBlur: this.handleBlurPassword,
                     value: this.state.values.password,
                     onChange: this.handleChange,
-                    onFocus: this.handleFocusPassword
+                    onFocus: this.handleFocus
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_FormControlLabel__WEBPACK_IMPORTED_MODULE_13__["default"], {
                   control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Checkbox__WEBPACK_IMPORTED_MODULE_14__["default"], {
@@ -28033,7 +28020,7 @@ var Login = /*#__PURE__*/function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ RegisterSide)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _mui_material_Avatar__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/Avatar */ "./node_modules/@mui/material/Avatar/Avatar.js");
@@ -28051,6 +28038,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/material/styles/createTheme.js");
 /* harmony import */ var _mui_material_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/styles */ "./node_modules/@mui/system/esm/ThemeProvider/ThemeProvider.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -28089,208 +28098,400 @@ function Copyright(props) {
 }
 
 var theme = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_4__["default"])();
-function RegisterSide() {
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    var data = new FormData(event.currentTarget);
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      method: "POST",
-      url: "/register",
-      dataType: "JSON",
-      data: {
-        firstName: data.get('firstName'),
-        lastName: data.get('lastName'),
-        userName: data.get('userName'),
-        email: data.get('email'),
-        password: data.get('password'),
-        password_confirmation: data.get('cpassword')
-      },
-      success: function success() {
-        window.location.replace("/");
-      },
-      error: function error() {
-        console.log('makis'); // TODO: Pop message saying incorect mail or pass and clear the inputs
-      }
-    });
-  };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    theme: theme,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      container: true,
-      component: "main",
-      sx: {
-        height: '100vh'
+var Register = /*#__PURE__*/function (_React$Component) {
+  _inherits(Register, _React$Component);
+
+  var _super = _createSuper(Register);
+
+  function Register(props) {
+    var _this;
+
+    _classCallCheck(this, Register);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      values: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        userName: "",
+        password: "",
+        cpassword: ""
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_CssBaseline__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        item: true,
-        xs: false,
-        sm: 4,
-        md: 7,
-        sx: {
-          backgroundImage: 'url(/storage/images/home_image2.jpg)',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: function backgroundColor(t) {
-            return t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900];
-          },
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+      error: {
+        firstName: false,
+        lastName: false,
+        email: false,
+        userName: false,
+        password: false,
+        cpassword: false,
+        unValidated: true
+      },
+      errorMessage: {
+        firstName: "Your first name is required",
+        lastName: "Your last name is required",
+        email: "Invalid email format",
+        userName: "This user name is already taken",
+        password: "Password is too short",
+        cpassword: "Password does not match"
+      },
+      showPassword: false
+    };
+
+    _this.setStateWrapper = function (state, name, value) {
+      _this.setState(function (prevState) {
+        return _defineProperty({}, state, _objectSpread(_objectSpread({}, prevState[state]), {}, _defineProperty({}, name, value)));
+      });
+    };
+
+    _this.validateNotEmptyString = function (name, value) {
+      _this.setStateWrapper('error', name, !value);
+    };
+
+    _this.validatePassword = function (value) {
+      _this.setStateWrapper('error', 'password', value.length < 9);
+    };
+
+    _this.validateEmail = function (value) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      _this.setStateWrapper('error', 'email', !re.test(value));
+
+      _this.setStateWrapper('errorMessage', 'email', "Invalid email format");
+    };
+
+    _this.validateUnique = function (name, value) {
+      var msg = name === "userName" ? "user name" : "email";
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        method: "POST",
+        url: "/" + name,
+        dataType: "JSON",
+        data: _defineProperty({}, name, value),
+        success: function success(data) {
+          console.log(data);
+
+          if (data === "true") {
+            _this.setStateWrapper('error', name, true);
+
+            _this.setStateWrapper('errorMessage', name, "This " + msg + " is already taken");
+          }
         }
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        item: true,
-        xs: 12,
-        sm: 8,
-        md: 5,
-        component: _mui_material_Paper__WEBPACK_IMPORTED_MODULE_8__["default"],
-        elevation: 6,
-        square: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      });
+    };
+
+    _this.handleBlur = function (e) {
+      var _e$target = e.target,
+          name = _e$target.name,
+          value = _e$target.value;
+
+      switch (name) {
+        case 'email':
+          _this.validateEmail(value);
+
+          _this.validateUnique("email", value);
+
+          break;
+
+        case 'userName':
+          _this.validateUnique("userName", value);
+
+          break;
+
+        case 'password':
+          _this.validatePassword(value);
+
+          break;
+
+        default:
+          _this.validateNotEmptyString(name, value);
+
+          break;
+      }
+    };
+
+    _this.handleKeyUp = function () {
+      if (_this.state.values.password !== _this.state.values.cpassword) {
+        _this.setStateWrapper('error', 'cpassword', true);
+      } else {
+        _this.setStateWrapper('error', 'cpassword', false);
+      }
+    };
+
+    _this.handleFocus = function (e) {
+      var name = e.target.name;
+
+      if (_this.state.error[name] === true) {
+        _this.setStateWrapper('error', name, false);
+      }
+    };
+
+    _this.handleChange = function (e) {
+      var _e$target2 = e.target,
+          name = _e$target2.name,
+          value = _e$target2.value;
+
+      _this.setStateWrapper('values', name, value);
+    };
+
+    _this.handleSubmit = function (e) {
+      e.preventDefault();
+      var data = new FormData(e.currentTarget);
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        method: "POST",
+        url: "/register",
+        dataType: "JSON",
+        data: {
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          userName: data.get('userName'),
+          email: data.get('email'),
+          password: data.get('password'),
+          password_confirmation: data.get('cpassword')
+        },
+        success: function success() {
+          window.location.replace("/");
+        },
+        error: function error(data) {
+          if (data.status === 422) {
+            _this.setStateWrapper('error', 'unValidated', false);
+          }
+        }
+      });
+    };
+
+    return _this;
+  }
+
+  _createClass(Register, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        theme: theme,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          container: true,
+          component: "main",
           sx: {
-            my: 8,
-            mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center'
+            height: '100vh'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Avatar__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_CssBaseline__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            item: true,
+            xs: false,
+            sm: 4,
+            md: 7,
             sx: {
-              m: 1,
-              bgcolor: 'secondary.main'
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_icons_material_LockOutlined__WEBPACK_IMPORTED_MODULE_11__["default"], {})
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            component: "h1",
-            variant: "h5",
-            children: "Register"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_9__["default"], {
-            component: "form",
-            noValidate: true,
-            onSubmit: handleSubmit,
-            sx: {
-              mt: 1
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              container: true,
-              spacing: 2,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                sm: 6,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  autoComplete: "given-name",
-                  name: "firstName",
-                  required: true,
-                  fullWidth: true,
-                  id: "firstName",
-                  label: "First Name",
-                  autoFocus: true
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                sm: 6,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  id: "lastName",
-                  label: "Last Name",
-                  name: "lastName",
-                  autoComplete: "family-name"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  id: "userName",
-                  label: "User Name",
-                  name: "userName",
-                  autoComplete: "user-name"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  id: "email",
-                  label: "Email Address",
-                  name: "email",
-                  autoComplete: "email"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  name: "password",
-                  label: "Password",
-                  type: "password",
-                  id: "password",
-                  autoComplete: "new-password"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: 12,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
-                  required: true,
-                  fullWidth: true,
-                  name: "cpassword",
-                  label: "Confirm Password",
-                  type: "password",
-                  id: "cpassword",
-                  autoComplete: "new-password"
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_FormControlLabel__WEBPACK_IMPORTED_MODULE_13__["default"], {
-              control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Checkbox__WEBPACK_IMPORTED_MODULE_14__["default"], {
-                value: "remember",
-                color: "primary"
-              }),
-              label: "Remember me"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
-              type: "submit",
-              fullWidth: true,
-              variant: "contained",
-              sx: {
-                mt: 3,
-                mb: 2
+              backgroundImage: 'url(/storage/images/home_image2.jpg)',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: function backgroundColor(t) {
+                return t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900];
               },
-              children: "Sign Up"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              container: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                xs: true,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                  href: "#",
-                  variant: "body2",
-                  children: "Forgot password?"
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                item: true,
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                  href: "/login",
-                  variant: "body2",
-                  children: "Already have an account? Sign in"
-                })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Copyright, {
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            item: true,
+            xs: 12,
+            sm: 8,
+            md: 5,
+            component: _mui_material_Paper__WEBPACK_IMPORTED_MODULE_8__["default"],
+            elevation: 6,
+            square: true,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_9__["default"], {
               sx: {
-                mt: 5
-              }
-            })]
+                my: 8,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Avatar__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                sx: {
+                  m: 1,
+                  bgcolor: 'secondary.main'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_icons_material_LockOutlined__WEBPACK_IMPORTED_MODULE_11__["default"], {})
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                component: "h1",
+                variant: "h5",
+                children: "Register"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                component: "form",
+                noValidate: true,
+                onSubmit: this.handleSubmit,
+                sx: {
+                  mt: 1
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  container: true,
+                  spacing: 2,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    sm: 6,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      autoComplete: "given-name",
+                      name: "firstName",
+                      required: true,
+                      fullWidth: true,
+                      id: "firstName",
+                      label: "First Name",
+                      autoFocus: true,
+                      value: this.state.values.firstName,
+                      onChange: this.handleChange,
+                      error: this.state.error.firstName,
+                      helperText: this.state.error.firstName === true ? this.state.errorMessage.firstName : " ",
+                      onBlur: this.handleBlur,
+                      onFocus: this.handleFocus
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    sm: 6,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      required: true,
+                      fullWidth: true,
+                      id: "lastName",
+                      label: "Last Name",
+                      name: "lastName",
+                      autoComplete: "family-name",
+                      value: this.state.values.lastName,
+                      onChange: this.handleChange,
+                      error: this.state.error.lastName,
+                      helperText: this.state.error.lastName === true ? this.state.errorMessage.lastName : " ",
+                      onBlur: this.handleBlur,
+                      onFocus: this.handleFocus
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      required: true,
+                      fullWidth: true,
+                      id: "userName",
+                      label: "User Name",
+                      name: "userName",
+                      autoComplete: "user-name",
+                      value: this.state.values.userName,
+                      onChange: this.handleChange,
+                      error: this.state.error.userName,
+                      helperText: this.state.error.userName === true ? this.state.errorMessage.userName : " ",
+                      onBlur: this.handleBlur,
+                      onFocus: this.handleFocus
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      required: true,
+                      fullWidth: true,
+                      id: "email",
+                      label: "Email Address",
+                      name: "email",
+                      autoComplete: "email",
+                      error: this.state.error.email,
+                      helperText: this.state.error.email === true ? this.state.errorMessage.email : " ",
+                      onBlur: this.handleBlur,
+                      value: this.state.values.email,
+                      onChange: this.handleChange,
+                      onFocus: this.handleFocus
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      required: true,
+                      fullWidth: true,
+                      name: "password",
+                      label: "Password",
+                      type: "password",
+                      id: "password",
+                      autoComplete: "new-password",
+                      error: this.state.error.password,
+                      helperText: this.state.error.password === true ? this.state.errorMessage.password : " ",
+                      onBlur: this.handleBlur,
+                      value: this.state.values.password,
+                      onChange: this.handleChange,
+                      onFocus: this.handleFocus,
+                      onKeyUp: this.handleKeyUp
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: 12,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_TextField__WEBPACK_IMPORTED_MODULE_12__["default"], {
+                      required: true,
+                      fullWidth: true,
+                      name: "cpassword",
+                      label: "Confirm Password",
+                      type: "password",
+                      id: "cpassword",
+                      autoComplete: "new-password",
+                      error: this.state.error.cpassword,
+                      helperText: this.state.error.cpassword === true ? this.state.errorMessage.cpassword : " ",
+                      value: this.state.values.cpassword,
+                      onChange: this.handleChange,
+                      onFocus: this.handleFocus,
+                      onKeyUp: this.handleKeyUp
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_FormControlLabel__WEBPACK_IMPORTED_MODULE_13__["default"], {
+                  control: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Checkbox__WEBPACK_IMPORTED_MODULE_14__["default"], {
+                    value: "remember",
+                    color: "primary"
+                  }),
+                  label: "Remember me"
+                }), this.state.error.unValidated === true ? " " : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                  className: "text-danger",
+                  children: "Sorry, your registration info was invalid. Please double-check your registration info."
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Button__WEBPACK_IMPORTED_MODULE_15__["default"], {
+                  type: "submit",
+                  fullWidth: true,
+                  variant: "contained",
+                  sx: {
+                    mt: 3,
+                    mb: 2
+                  },
+                  children: "Sign Up"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                  container: true,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    xs: true,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                      href: "#",
+                      variant: "body2",
+                      children: "Forgot password?"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                    item: true,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                      href: "/login",
+                      variant: "body2",
+                      children: "Already have an account? Sign in"
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Copyright, {
+                  sx: {
+                    mt: 5
+                  }
+                })]
+              })]
+            })
           })]
         })
-      })]
-    })
-  });
-}
+      });
+    }
+  }]);
+
+  return Register;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Register); //342
 
 /***/ }),
 

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -73,5 +74,27 @@ class RegisterController extends Controller
             'userName' => $data['userName'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function isUserNameTaken(Request $request)
+    {
+      $data = User::where("userName", $request->userName)->first();
+      if($data == null){
+        return response()->json("false");
+      }
+      else{
+        return response()->json("true");
+      }
+    }
+    public function isEmailTaken(Request $request)
+    {
+      $data = User::where("email", $request->email)->first();
+      if($data == null){
+        return response()->json("false");
+      }
+      else{
+        //return response()->json($data);
+        return response()->json("true");
+      }
     }
 }
