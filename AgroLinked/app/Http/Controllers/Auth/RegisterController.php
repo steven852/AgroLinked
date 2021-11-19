@@ -93,7 +93,6 @@ class RegisterController extends Controller
         return response()->json("false");
       }
       else{
-        //return response()->json($data);
         return response()->json("true");
       }
     }
