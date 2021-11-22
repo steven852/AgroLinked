@@ -43,3 +43,21 @@
   color: #0d6efd;
   text-decoration: none;
 }
+
+.containerC {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.9fr;
+  grid-template-rows: 1fr 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "dateC dataC dataC"
+    "dateC dataC dataC"
+    ". . buttonsC";
+}
+
+.dateC { grid-area: dateC; }
+
+.dataC { grid-area: dataC; }
+
+.buttonsC { grid-area: buttonsC; }

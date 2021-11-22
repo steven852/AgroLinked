@@ -17,15 +17,32 @@ class NavBar extends React.Component {
   }
 
   render(){
+    const date = new Date();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
     return (
       <AppBar
         position="fixed"
         sx={{ width: `calc(100% - ${this.props.drawerWidth}px)`, ml: `${this.props.drawerWidth}px` }}
       >
-        <Toolbar className={"bg-danger container"}>
-          <Typography variant="h6" noWrap component="div" className={"bg-danger row"}>
-            Date - Event - Notifications - <Account />
+        <Toolbar className={"bg-danger d-flex"}>
+          <Typography variant="h6" noWrap component="div" className={"me-auto"}>
+            {date.getDate()}
+            -
+            {monthNames[date.getMonth()]}
+            -
+            {date.getFullYear()}
           </Typography>
+
+          <Typography variant="h6" noWrap component="div" className={"me-auto"}>
+          No Event Today
+          </Typography>
+
+          <Typography variant="h6" noWrap component="div" className={"bg-danger"}>
+          Notifications
+          </Typography>
+
+          <Account />
         </Toolbar>
       </AppBar>
     );

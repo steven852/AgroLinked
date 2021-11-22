@@ -9,9 +9,15 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import NavBar from "./NavBar.js";
+import Calendar from "./Calendar.js";
+import MailIcon from '@mui/icons-material/Mail';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import CloudIcon from '@mui/icons-material/Cloud';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+
 
 class Home extends React.Component {
 
@@ -42,37 +48,51 @@ class Home extends React.Component {
                 t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              opacity: 0.9,
+              opacity: 1,
             },
           }}
           variant="permanent"
           anchor="left"
 
         >
-          <Toolbar className={"d-flex justify-content-center align-items-center"}>
-            <a className={"h3 link-light text-decoration-none font-weight-bold  mt-1"} href="/">AgroLinked</a>
+          <Toolbar className={"bg-dark d-flex justify-content-center align-items-center"}>
+            <a className={"h3 link-light text-decoration-none font-weight-bold mt-1"} href="/">AgroLinked</a>
           </Toolbar>
           <Divider />
-          <List className={"text-white"}>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon className={"text-white"}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+          <List className={"text-light"}>
+            <ListItem button>
+              <ListItemIcon className={"text-primary"}>
+                <ShowChartIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Overview"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={"text-primary"}>
+                <CalendarTodayIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Calendar"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={"text-primary"}>
+                <AccountBalanceIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Financial"} />
+            </ListItem>
+            <ListItem button>
+              <ListItemIcon className={"text-primary"}>
+                <CloudIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Weather"} />
+            </ListItem>
           </List>
           <Divider />
           <List className={"text-white"}>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon className={"text-white"}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+          <ListItem button>
+            <ListItemIcon className={"text-primary"}>
+              <ManageAccountsIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Account"} />
+          </ListItem>
           </List>
         </Drawer>
 
@@ -81,7 +101,7 @@ class Home extends React.Component {
           sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
         >
           <Toolbar />
-
+          <Calendar />
         </Box>
       </Box>
     );
