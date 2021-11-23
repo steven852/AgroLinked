@@ -53,3 +53,4 @@ Route::post('/userName', 'Auth\RegisterController@isUserNameTaken');
 Route::post('/email', 'Auth\RegisterController@isEmailTaken');
 
 Route::resource('schedules', 'ScheduleController');
+Route::resource('transactions', 'TransactionController');

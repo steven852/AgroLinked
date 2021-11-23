@@ -15,4 +15,4 @@ require('./bootstrap');
 
 require('./assets/App');
 require('./assets/Auth');
-require('./assets/Dashboard');
+require('./assets/Account');

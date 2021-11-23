@@ -353,4 +353,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register; //342
+export default Register;

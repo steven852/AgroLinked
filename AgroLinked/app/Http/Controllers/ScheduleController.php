@@ -24,7 +24,7 @@ class ScheduleController extends Controller
       return response()->json($data);
      }
 
-    return view('account.schedules');
+    return view('account.home');
   }
 
    public function create()
