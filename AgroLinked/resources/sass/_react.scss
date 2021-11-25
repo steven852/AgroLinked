@@ -65,3 +65,14 @@
 // .dashboard-link:hover { //Use this to change the color of highlighting dashboard button links
 //    color: #0275d8
 // }
+
+
+// Remove up and down arrow from number type inputs for most browsers
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

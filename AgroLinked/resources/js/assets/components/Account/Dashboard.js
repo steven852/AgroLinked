@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import HistoryIcon from '@mui/icons-material/History';
 import AddIcon from '@mui/icons-material/Add';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import Typography from '@mui/material/Typography';

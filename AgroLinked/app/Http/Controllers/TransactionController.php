@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
@@ -11,8 +12,14 @@ class TransactionController extends Controller
       $this->middleware('auth');
   }
 
-  public function index()
+  public function index(Request $request)
   {
+    if($request->ajax())
+    {
+      $data = Transaction::where("user_id", auth()->id())->latest()->get()->take(5);
+        return response()->json($data);
+    }
+
     return view('account.home');
   }
 
@@ -25,7 +32,7 @@ class TransactionController extends Controller
   {
     $data = request()->validate([
       'date' => ['required', 'date'],
-      'amount' => ['required', 'float'],
+      'amount' => ['required', 'numeric'],
       'beneficiary' => ['required', 'string'],
       'type' => ['required', 'string'],
       'details' => '',

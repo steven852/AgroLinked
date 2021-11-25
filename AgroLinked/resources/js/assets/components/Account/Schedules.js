@@ -14,6 +14,7 @@ import FullCalendar from '@fullcalendar/react';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
+import moment from 'moment';
 
 const style = {
   position: 'absolute',
@@ -82,7 +83,7 @@ class Schedules extends React.Component {
 
     this.handleChangeDate = (newValue) => {
       this.setState({
-        date: newValue,
+        date: moment(newValue).format('YYYY-MM-DD'),
       });
     };
 

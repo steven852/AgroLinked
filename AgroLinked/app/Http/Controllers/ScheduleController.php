@@ -17,12 +17,11 @@ class ScheduleController extends Controller
 
   public function index(Request $request)
   {
-     if($request->ajax())
+    if($request->ajax())
     {
-
-    $data = Schedule::where("user_id", auth()->id())->get();
-      return response()->json($data);
-     }
+      $data = Schedule::where("user_id", auth()->id())->get();
+        return response()->json($data);
+    }
 
     return view('account.home');
   }
