@@ -125,7 +125,16 @@ class Dashboard extends React.Component {
                 </ListItemButton>
               </List>
             </Collapse>
-
+            <Collapse in={this.state.open.finances} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }} component={Link} to="/transactions/history">
+                  <ListItemIcon className={"text-primary"}>
+                    <HistoryIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Transaction History" />
+                </ListItemButton>
+              </List>
+            </Collapse>
             <ListItemButton>
               <ListItemIcon className={"text-primary"}>
                 <CloudIcon />

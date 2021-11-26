@@ -82,16 +82,12 @@ class AddTransaction extends React.Component {
           details: this.state.details,
         },
         success: (data) => {
-          console.log("makis")
-        },
-
-        error: (data) => {
-          console.log("makissss")
+          this.updateHistory();
         },
       });
     };
 
-    this.setHistory = () => {
+    this.updateHistory = () => {
       $.ajax({
         method: "GET",
         url: "/transactions",
@@ -107,14 +103,10 @@ class AddTransaction extends React.Component {
         },
       });
     };
-
+    this.updateHistory();
   }
 
-
   render(){
-
-    this.setHistory();
-
     return (
       <Grid container spacing={2}>
         <Grid item xs={4}>

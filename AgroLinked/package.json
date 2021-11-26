@@ -41,6 +41,7 @@
         "@mui/icons-material": "^5.1.1",
         "@mui/lab": "^5.0.0-alpha.55",
         "@mui/material": "^5.1.1",
+        "@mui/x-data-grid": "^5.0.1",
         "@popperjs/core": "^2.10.2",
         "date-fns": "^2.26.0",
         "history": "^5.1.0",

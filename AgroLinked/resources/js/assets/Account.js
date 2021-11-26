@@ -5,6 +5,7 @@ import Dashboard from './components/Account/Dashboard.js';
 import Overview from './components/Account/Overview.js';
 import Schedules from './components/Account/Schedules.js';
 import AddTransaction from './components/Account/AddTransaction.js';
+import TransactionHistory from './components/Account/TransactionHistory.js';
 
 class Account extends React.Component {
 
@@ -24,6 +25,7 @@ class Account extends React.Component {
           <Route exact path="/" element={<Dashboard content={<Overview />} />} />
           <Route exact path="/schedules" element={<Dashboard content={<Schedules />} />} />
           <Route exact path="/transactions/create" element={<Dashboard content={<AddTransaction />} />} />
+          <Route exact path="/transactions/history" element={<Dashboard content={<TransactionHistory />} />} />
         </Routes>
       </Router>
     );

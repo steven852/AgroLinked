@@ -53,4 +53,7 @@ Route::post('/userName', 'Auth\RegisterController@isUserNameTaken');
 Route::post('/email', 'Auth\RegisterController@isEmailTaken');
 
 Route::resource('schedules', 'ScheduleController');
+Route::get('/transactions/history', function () {
+    return view('account.home');
+});
 Route::resource('transactions', 'TransactionController');
